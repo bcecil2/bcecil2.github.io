@@ -14,7 +14,11 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
+<<<<<<< HEAD
   font-size: 100%;
+=======
+  font-size: 150%;
+>>>>>>> master
   font: inherit;
   vertical-align: baseline; }
 
@@ -56,4 +60,12 @@ a {
 
 #main {
   padding: 50px; }
+<<<<<<< HEAD
   
+=======
+
+  h1 {
+    font-size: 8em;
+    color: #ff69b4;
+    }
+>>>>>>> master
