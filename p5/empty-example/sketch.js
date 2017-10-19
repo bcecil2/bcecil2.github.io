@@ -1,11 +1,5 @@
 function setup() {
-<<<<<<< HEAD
-  // put setup code here
-}
-
-function draw() {
-  // put drawing code here
-=======
+  
   createCanvas(480,120);
 }
 
@@ -16,5 +10,4 @@ function draw() {
     fill(225);
   } 
     ellipse(mouseX,mouseY,80,80);
->>>>>>> master
 }
