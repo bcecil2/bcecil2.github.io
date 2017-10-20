@@ -1,20 +1,20 @@
 function setup() {
-createCanvas(480, 120);
-strokeWeight(4);
-}
+    createCanvas(1440, 600);
+    background(254,0,0)
 
-function draw(){
-    background(0);
-     fill(201);
-     line(120,60,320,90);
-     fill(225);
-     rect(145,34,50,15);
-     fill(240);
-     ellipse(240,60,30,90);
-    
-    
 }
 
 
+
+function draw() {
+    
+    if(mouseIsPressed) {
+        rect(mouseX,mouseY,80,80);
+    } else {
+        ellipse(mouseX,mouseY,100,100);
+    } 
+     
+    fill(0,0,254)
+  }
 
 
