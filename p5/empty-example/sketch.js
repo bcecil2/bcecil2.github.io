@@ -1,6 +1,6 @@
 function setup() {
   
-  createCanvas(100,0,0,500);
+  <canvas id="defaultCanvas0" width="1000" height="400" style="width: 1000px; height: 400px; position: absolute; left: -94.5px; top: 118.5px;"></canvas>;
 }
 
 function draw() {
