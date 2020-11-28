@@ -3,17 +3,21 @@
   <meta charset="UTF-8" />
   <title>Responsive Vertical Timeline</title>
   
-  <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="main.css" media="screen"/>
-  <!-- // Fonts -->
+  <link rel="stylesheet" type="text/css" href="main.css" media="screen"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></script>
 </head>
+<style>
+.center {
+    margin: 0 auto;
+    width: 80%;
+}
+</style>
 <body>
 
    <div class="jumbotron vertical-center bg-dark text-light">
@@ -55,82 +59,30 @@ fill="black" xmlns="http://www.w3.org/2000/svg">
 
   <br>
   <br>
+
   <div class="container">
     <iframe src="BlakeCecilResume.pdf" width="100%" height="100%"></iframe> 
   </div>
+    
+  <br>
+  <br>
 
+  <div class="container">
+      <h2 class ="text-center">Projects</h2>
+      <br>
+      <div class="row justify-content-center">
+	    <div class="col">
+		<a class="btn btn-primary" href="./timeline.html">Oregon State Senior Project</a>
+	    </div>
+	    <div class="col">
+		<a class="btn btn-primary" href="https://github.com/bcecil2/JackCompiler">Nand2Tetris Compiler</a>
+	    </div>
+	    <div class="col">
+		<a class="btn btn-primary" href="https://github.com/bcecil2/Diginet">Digit Recognition</a>
+	    </div>
+       </div>
+  </div>
 
-  <!-- Vertical Timeline -->
-  <section id="conference-timeline">
-    <div class="timeline-start">Start</div>
-    <div class="conference-center-line"></div>
-    <div class="conference-timeline-content">
-      <!-- Article -->
-      <div class="timeline-article">
-        <div class="content-left-container">
-          <div class="content-left">
-            <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it! <span class="article-number">01</span></p>
-          </div>
-          <span class="timeline-author">John Doe</span>
-        </div>
-        <div class="content-right-container">
-          <div class="content-right">
-            <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. <span class="article-number">02</span></p>
-          </div>
-          <span class="timeline-author">John Doe</span>
-        </div>
-        <div class="meta-date">
-          <span class="date">18</span>
-          <span class="month">APR</span>
-        </div>
-      </div>
-      <!-- // Article -->
-      
-      <!-- Article -->
-      <div class="timeline-article">
-        <div class="content-left-container">
-          <div class="content-left">
-            <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it! <span class="article-number">01</span></p>
-          </div>
-          <span class="timeline-author">John Doe</span>
-        </div>
-        <div class="content-right-container">
-          <div class="content-right">
-            <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. <span class="article-number">02</span></p>
-          </div>
-          <span class="timeline-author">John Doe</span>
-        </div>
-        <div class="meta-date">
-          <span class="date">18</span>
-          <span class="month">APR</span>
-        </div>
-      </div>
-      <!-- // Article -->
-      
-      <!-- Article -->
-      <div class="timeline-article">
-        <div class="content-left-container">
-          <div class="content-left">
-            <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it! <span class="article-number">01</span></p>
-          </div>
-          <span class="timeline-author">John Doe</span>
-        </div>
-        <div class="content-right-container">
-          <div class="content-right">
-            <p>When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. <span class="article-number">02</span></p>
-          </div>
-          <span class="timeline-author">John Doe</span>
-        </div>
-        <div class="meta-date">
-          <span class="date">18</span>
-          <span class="month">APR</span>
-        </div>
-      </div>
-      <!-- // Article -->
-    </div>
-    <div class="timeline-end">End</div>
-  </section>
-  <!-- // Vertical Timeline -->
 </body>
 </html>
 
