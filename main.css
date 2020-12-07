@@ -18,8 +18,8 @@ body {
   font-size: 18px;
   font-weight: 900;
   text-transform: uppercase;
-  background: #00b0bd;
-  padding: 15px 23px;
+  background: #343a40;
+  padding: 15px 20px;
   color: #fff;
   max-width: 5%;
   width: 100%;
@@ -33,12 +33,12 @@ body {
   top: 0;
   left: 50%;
   margin-left: -2px;
-  background: #00b0bd;
+  background: #343a40;
   z-index: -1;
 }
 #conference-timeline .conference-timeline-content {
-  padding-top: 67px;
-  padding-bottom: 67px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .timeline-article {
   width: 100%;
@@ -50,14 +50,16 @@ body {
 .timeline-article .content-left-container,
 .timeline-article .content-right-container {
   max-width: 44%;
+  padding: 0px 0px 0px 0px;
   width: 100%;
+  
 }
 .timeline-article .timeline-author {
   display: block;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #242424;
+  color: #343a40;
   text-align: right;
 }
 .timeline-article .content-left,
@@ -73,7 +75,7 @@ body {
   margin: 0 0 0 60px;
   padding: 0;
   font-weight: 400;
-  color: #242424;
+  color: #343a40;
   font-size: 14px;
   line-height: 24px;
   position: relative;
@@ -84,7 +86,7 @@ body {
   font-size: 44px;
   top: 10px;
   left: -60px;
-  color: #00b0bd;
+  color: #343a40;
 }
 .timeline-article .content-left-container {
   float: left;
@@ -117,7 +119,7 @@ body {
   margin-left: -31px;
   color: #fff;
   border-radius: 100%;
-  background: #00b0bd;
+  background: #343a40;
 }
 .timeline-article .meta-date .date,
 .timeline-article .meta-date .month {
