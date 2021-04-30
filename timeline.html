@@ -6,13 +6,36 @@
   <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="main.css" media="screen"/>
   <!-- // Fonts -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+.smallcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.bigcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+</style>
 </head>
 
 <body>
@@ -29,7 +52,7 @@
 </nav>
 
 <div class="jumbotron rounded-0 vertical-center bg-dark text-light">
-        <h1 class="text-center">Oregon State Investment Group Portoflio Management</h1>
+        <h1 class="text-center">OSIG Portfolio Analysis Using Deep Learning</h1>
 
 	<div class="text-center">
 	    <img src="osig-word-logo-transparent.png"></img>
@@ -39,20 +62,87 @@
 <div class="container">
     <h2 class="text-center">Portfolio Research and Management</h2>
     <div class="text-justify">
-	The Oregon State Investment Group (OSIG) currently manages nearly $3.5 million spread across 3
-	different portfolios. However unlike major finance firms, OSIG does not have access to 
-	the same advanced thechnology. Our Project seeks to change that. Upon our projects
-	completetion the group will have access to software that, expedites the portfolio research process
-        analyzes and optimizes portfolio allocations, and computes and displays essential portfolio
-	performance metrics.
-    </div>
+	    The Oregon State Investment Group (OSIG) currently manages nearly $3.5 million spread across 3
+	    different portfolios. However unlike major finance firms, OSIG does not have access to 
+	    the same advanced technology. Our work seeks to change that by using deep learning techniques
+      to help the group analyze and manage their portfolios.
+  
+      <br>
+      <br>
+
+      As part of the machine learning team I have developed software that reccommends 
+      an optimal allocation of assets for a portfolio. This gives managers additional insight
+      into their portfolio, expedites the management process, and most importantly increases 
+      returns
+  </div>
+
 </div>
 
 <br>
 <br>
+
 <div class="container">
-    <h2 class="text-center"> Relevant Documents and Materials </h2>
+    <h2 class="text-center">Results</h2>
+    <div class="text-justify">
+    We currently have our model up and working and have successfully generalized it to work
+    on a variety of assets. We have seen great results running it on OSIG'S large cap portfolio
+    which contains around 20 assets each with a market cap above $10 million. Over a five year
+    period our model is able to get substantial cumulative returns.
+    <br>
+    <img src="cumulativereturns.jpg" class="smallcenter"></img>
+    <br>
+    We are currently in the process of creating a web application for analysis tool which will be used by the groups members. For those interested in the details of the model read below or check out our <a target="_blank" href="https://github.com/BraedenKuether/Capstone/tree/altsharpe">Github Repo</a>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h2 class="text-center"> Technical Details </h2>
     <table class="table table-bordered">
+    <div class="text-justify">
+      For the model we are using a LSTM. It takes in a portfolio made up of \(n\) assets, we then
+      collect some features for each asset (closing,volume,fundamentals etc.) and package these up
+      into vectors. We then run them through a architecture that looks like this
+      <br>
+      <br>
+        <img src=mode.gif class="bigcenter"></img>   
+      <br>
+      <br>
+      In our case the hidden layer is an LSTM feeding into a fully connected layer and the softmax is used
+      to make sure the weights of our portfolio sum to one. The whole network is driven by the
+      sharpe ratio as a loss function, which tells us the amount of excess return our portfolio
+      achieves relative to a risk free asset. For each asset we calculate the returns over a
+      time period \(t\) and then compute the ratio of the mean returns to the volatility of the
+      returns. Mathematically it looks like this
+
+      \[
+        \begin{align*}
+          R_{p,t} &= \sum_{i=1}^n w_{i,t-1}r_{i,t}\\
+          E(R_{p,t}) &= \frac{1}{T} \sum_{i=1}^T R_{p,t}\\
+          L &= \frac{E(R_{p,t})}{\sqrt{\text{var}(E(R_{p,t}))}}\\
+         \end{align*}
+      \]
+      
+      <br>
+      <br>
+      This can be expresssed succinctly in pyTorch as
+      <pre>
+        <code>
+           def sharpe_loss(weights, returns):
+            # weights batch X time X assets
+            # returns batch X time X assets
+
+            #row wise dot product
+            R = torch.sum(weights*returns,dim=-1)
+            ER = torch.mean(R,1)
+            STD = torch.std(R,1)
+            ratio = torch.sum(ER/(STD+1e-6)) 
+            return -ratio
+        </code>
+      </pre>
+
+    </div>
   <tbody>
     <tr>
       <td><a href="BlakeCecilResume.pdf" download>Resume</a></td>
@@ -78,292 +168,5 @@
 </div>
 <br>
 <br>
-  <!-- Vertical Timeline -->
-  <section id="conference-timeline">
-    <div class="timeline-start">Start</div>
-    <div class="conference-center-line"></div>
-    <div class="conference-timeline-content">
-      <!-- Article -->
-      <div class="timeline-article">
-        <div class="content-left-container">
-          <div class="content-left">
-            <p>After learning some valuable information about constructing an eye catching resume
-	    I reviewed and updated my current resume, which can be downloaded 
-	    <a href="BlakeCecilResume.pdf" target="_blank">here</a>.
-	    <span class="article-number">01</span></p>
-          </div>
-        </div>
-	<div class="content-right-container">
-          <div class="content-right">
-	      <img src="resheader.png" width=100% height=10%></img> 
-          </div>
-        </div>
-
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-      </div>
-      <!-- // Article -->
-      
-      <!-- Article -->
-      <div class="timeline-article">
-        <div class="content-right-container">
-          <div class="content-right">
-            <p>
-	    In order to prepare and explore project ideas I researched and produced a technical
-	    document based on 3 projects that stood out to me. I focused on AI/ML related topics
-	    and attempted to summarize the project goals and estimate what would be required to
-	    see them to fruition. My milestone 1 can be downloaded <a href="milestone1.pdf" target="_blank">here</a>.
-
-	    <span class="article-number">02</span>
-	    </p>
-          </div>
-        </div>
-	<div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-left-container">
-          <div class="content-left">
-	    <img src="milestone1header.png" width=100% height=20%></img> 
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-article">
-        <div class="content-left-container">
-          <div class="content-left">
-            <p>
-	    After researching projects I recived an offer to join the OSIG project and promptly
-	    joined. We had our first project meeting and set up a discord server for our
-	    communications and a github repo which you can visit <a
-		href="https://github.com/BraedenKuether/Capstone" target="_blank">here.</a>  
-	    <span class="article-number">03</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-right-container">
-          <div class="content-right">
-            <p>
-	     With the project off the ground, me and Ashyan began researching 
-	     the portfolio management problem, and learning some ideas from economics. After 
-	     some research we came upon <a href="https://jfds.pm-research.com/content/early/2020/08/26/jfds.2020.1.042" target="_blank">this</a> paper which we decied to base
-	     our first prototype on.
-	    <span class="article-number">04</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-left-container">
-          <div class="content-left">
-	      <img src="research.jfif"></img>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-left-container">
-          <div class="content-left">
-            <p>
-	    For milestone 2 we came together and discussed our vision for the project as a group,
-	    analyzed the project constraints, features, and identified user stories and a iteration 
-	    plan moving forward. The milestone 2 document can be found <a href="milestone2.pdf" target="_blank">here.</a>
-	    <span class="article-number">05</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-right-container">
-          <div class="content-right">
-            <p>
-	    with some research under our belt and the project vision flushed we began hunting down
-	    the concrete details. For the machine learning team we decided upon using pytorch for 
-	    machine learning and pyex as our financial api.
-	    <span class="article-number">06</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-left-container">
-          <div class="content-left">
-	      <img src="pytorch.png" width="100%" height="50%"></img> 
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-left-container">
-          <div class="content-left">
-            <p>
-	    With frameworks settled on we began working on a prototype of the ML model.
-	    In order to facilitate easy collaboration we decided upon using google colab
-	    so we could view each others work in real time. The latest versions of these 
-	    models can be found on github <a href="https://github.com/BraedenKuether/Capstone/tree/MLPrototypes" target="_blank">here</a>.
-	    <span class="article-number">07</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-right-container">
-          <div class="content-right">
-	      <img src="stonks.jfif" width="100%" height="50%"></img> 
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-right-container">
-          <div class="content-right">
-	    <p>
-	    In order to help facilitate progress I decided to reach out to an AI faculty member to
-	    see if they would play a technical adivsor role. As preperation I created a slide deck 
-	    that provides an overview of the techinical aspects of the project which can be found
-	    <a href="technicalPrez.pdf" target="_blank">here</a>.
-	    <span class="article-number">08</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-left-container">
-          <div class="content-left">
-	      <img src="fuxin.jfif" width=80% height=50%></img> 
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-left-container">
-          <div class="content-left">
-	    <p>
-	    After many weeks of trading ideas, researching, and lots of code
-	    we finally start to get some sensible results from our model!
-	    <span class="article-number">09</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-right-container">
-          <div class="content-right">
-	      <img src="loss.png" width=100% height=50%></img> 
-          </div>
-        </div>
-     </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-right-container">
-          <div class="content-right">
-	    <p>
-	    After completing our first sprint we put together a presentation on our 
-	    project, its big picture goals, and our current progress. We didnt get much 
-	    feedback, which I will optimistically interpret as a sign we arent doing anything
-	    obviously wrong. The presentation can be downloaded <a href="Design Reviews.pdf"
-		target="_blank">here</a>.
-	    <span class="article-number">10</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-     </div>
-    </div>
-
-    <div class="timeline-article">
-      <div class="content-left-container">
-          <div class="content-left">
-	    <p>
-	    As the term comes to an end we took the time to fill out peer reviews. 
-	    Overall I am pleased with the results. As expected it appears my technical
-	    abilities are my strengths. I have room to improve when it comes to focusing
-	    on the big picture aspects of the project, and need to work on taking interest
-	    in the front end and design aspects of the project. My peer reviews can be
-	    seen 
-	    <a href="ResponseSummary.pdf" target="_blank">here</a>.
-	    <span class="article-number">11</span></p>
-          </div>
-        </div>
-        <div class="meta-date">
-          <span class="date"></span>
-          <span class="month"></span>
-        </div>
-	<div class="content-right-container">
-          <div class="content-right">
-	    <img src="peer.jfif" width="100%"></img>.
-          </div>
-        </div>
-     </div>
-    </div>
-
-    <div class="timeline-end">The End?</div>
-  </section>
-  <!-- // Vertical Timeline -->
-  <br>
-  <br>
-    
-  <div class="container" style="border-style:solid;border-color:#343a40;">
-    <h2 class="text-center">Summary</h2>
-    <div class="text-justify">
-	This term the AI team has made great progress. I helped hunt down papers and concepts 
-	that proved to be vital to the success of the project. I set up a technical advisor 
-	for the team to utitlize. I worked in parallel with Ashyan to produce, debug and test
-	different prototypes of the core ML model. After settling on an approach I began to 
-	standardize and consolidate our code base, as well as begin working on better methods 
-	of testing.
-	<br>
-	<br>
-	<br>
-    </div>
-   </div>
-  
-
-    <br>
-    <br>
-
-    <div class="container" style="border-style:solid;border-color:#343a40;">
-    <h2 class="text-center">Future Goals</h2>
-    <div class="text-justify">
-	We have agreed as a team to put some time into the project over the break so we are
-	able to hit the ground running come winter term. My short term goal within the AI team is to have a
-	polished prototype done before the end of break, and to begin the generalization process 
-	of the model. My optimistic goal is to finish the generalization, but at a minimum we will
-	get it started. The secondary goal is to build out our testing and visualization suite.
-	Our long term goal is to have more or less a working model that can be used in the browser
-	by the end of the winter term. As for less technical goals, I am going to work on engaging with and paying closer attention to the front end aspects of the project.
-	<br>
-	<br>
-	<br>
-    </div>
-   </div>
-   <br>
-   <br>
 </body>
 </html>
