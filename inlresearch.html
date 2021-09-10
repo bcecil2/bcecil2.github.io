@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>INL Research</title>
+  
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- // Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+.smallcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.bigcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light border-bottom
+    border-secondary">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://bcecil2.github.io">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron rounded-0 vertical-center bg-dark text-light">
+  <h1 class="text-center">Idaho National Laboratories Autonomous Drone Research</h1>
+  <div class="text-center">
+	    <img width='500px' height='150px' src="rounds.jpg"></img>
+	</div>
+</div>
+
+<div class="container">
+    <h2 class="text-center">Remote Operable Unmanned Naviogation of Drones (ROUNDS)</h2>
+    <div class="text-justify">
+      Idaho National Laboratories (INL) is researching and developing a system that allows drones to
+      navigate autonomously in GPS denied environments. The drones find their way through complex
+      environments by using QR to navigate, as demonstrated in the video below.
+      <br>
+      <br>
+      <div class='text-center'>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/o3QfEdV_YGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h2 class="text-center">Obstacle Detection</h2>
+    <div class="text-justify">
+      A critical aspect of any truly autonomous navigation system is the ability to navigate dynamic
+      and complex environments, to this end an obstacle detection system is crucial for the drones
+      success. My task was to research the state of the art approaches to obstacle detection,
+      identify a suitable approach, and use it to implement a obstacle detection API.  
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center">Results</h2>
+    <div class="text-justify">
+      After surverying obstacle detection literature I identified a machine learning method know as
+      depth estimation as the best approach given our constraints and environment. I collected a
+      small dataset of videos in various environments and different obstacles and validated the
+      selected models on them. The approach was highly succesful with 92% accuracy. More details
+      can be seen in the poster, which won the INL summer intern poster session.
+
+    </div>
+
+    <br>
+    <br>
+
+    <div class='text-center'>
+      <img width='1000px' height='1000px' src='DronePoster.jpg'></img>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h2 class="text-center">Conclusions</h2>
+    <div class="text-justify">
+      Our work on obstacle detection will be integrated into the ROUNDS system which will in turn be
+      used to automate tedious tasks such a inspections and security patrols, saving time, money,
+      and increasing plant efficiency. I gained some valuable skills during my internship, I learned
+      how to read and evaluate incredibly technical machine learning papers, and also got hands on
+      experience modifying and applying state of the art models to novel real world tasks. 
+    </div>
+</div>
+
+</br>
+</br>
+</br>
+</body>
+</html>
