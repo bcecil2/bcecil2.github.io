@@ -1,0 +1,176 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Senior Project</title>
+  
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- // Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+.smallcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.bigcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light border-bottom
+    border-secondary">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://bcecil2.github.io">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron rounded-0 vertical-center bg-dark text-light">
+        <h1 class="text-center">OSIG Portfolio Analysis Using Deep Learning</h1>
+
+	<div class="text-center">
+	    <img src="osig-word-logo-transparent.png"></img>
+	</div>
+</div>
+
+<div class="container">
+    <h2 class="text-center">Portfolio Research and Management</h2>
+    <div class="text-justify">
+	    The Oregon State Investment Group (OSIG) currently manages nearly $3.5 million spread across 3
+	    different portfolios. However unlike major finance firms, OSIG does not have access to 
+	    the same advanced technology. Our work seeks to change that by using deep learning techniques
+      to help the group analyze and manage their portfolios.
+  
+      <br>
+      <br>
+
+      As part of the machine learning team I have developed software that reccommends 
+      an optimal allocation of assets for a portfolio. This gives managers additional insight
+      into their portfolio, expedites the management process, and most importantly increases 
+      returns!
+  </div>
+
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h2 class="text-center">Results</h2>
+    <div class="text-justify">
+    We currently have our model up and working and have successfully generalized it to work
+    on a variety of assets. We have seen great results running it on OSIG'S large cap portfolio
+    which contains around 20 assets each with a market cap above $10 million. Over a five year
+    period our model is able to get substantial cumulative returns.
+    <br>
+    <img src="cumulativereturns.jpg" class="smallcenter"></img>
+    <br>
+    We are currently in the process of creating a web application for analysis tool which will be
+    used by the groups members. For those interested in the details of the model read below or check
+    out our <a target="_blank"
+    href="https://github.com/BraedenKuether/Capstone/tree/altsharpe">Github Repo</a>.
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h2 class="text-center"> Technical Details </h2>
+    <table class="table table-bordered">
+    <div class="text-justify">
+      For the model we are using a LSTM. It takes in a portfolio made up of \(n\) assets, we then
+      collect some features for each asset (closing,volume,fundamentals etc.) and package these up
+      into vectors. We then run them through a architecture that looks like this
+      <br>
+      <br>
+        <img src=mode.gif class="bigcenter"></img>   
+      <br>
+      <br>
+      In our case the hidden layer is an LSTM feeding into a fully connected layer and the softmax is used
+      to make sure the weights of our portfolio sum to one. The whole network is driven by the
+      sharpe ratio as a loss function, which tells us the amount of excess return our portfolio
+      achieves relative to a risk free asset. For each asset we calculate the returns over a
+      time period \(t\) and then compute the ratio of the mean returns to the volatility of the
+      returns. Mathematically it looks like this
+
+      \[
+        \begin{align*}
+          R_{p,t} &= \sum_{i=1}^n w_{i,t-1}r_{i,t}\\
+          E(R_{p,t}) &= \frac{1}{T} \sum_{i=1}^T R_{p,t}\\
+          L &= \frac{E(R_{p,t})}{\sqrt{\text{var}(E(R_{p,t}))}}\\
+         \end{align*}
+      \]
+      
+      <br>
+      <br>
+      This can be expresssed succinctly in pyTorch as
+      <pre>
+        <code>
+           def sharpe_loss(weights, returns):
+            # weights batch X time X assets
+            # returns batch X time X assets
+
+            #row wise dot product
+            R = torch.sum(weights*returns,dim=-1)
+            ER = torch.mean(R,1)
+            STD = torch.std(R,1)
+            ratio = torch.sum(ER/(STD+1e-6)) 
+            return -ratio
+        </code>
+      </pre>
+
+    </div>
+<!--
+  <tbody>
+    <tr>
+      <td><a href="BlakeCecilResume.pdf" download>Resume</a></td>
+      <td><a href="milestone1.pdf" download>Milestone 1</a>
+</td>
+      <td><a href="milestone2.pdf" download>Milestone 2</a>
+</td>
+    </tr>
+    <tr>
+      <td><a href="Fall Term Overview.pdf" download>Sprint Overview</a>
+</td>
+      <td><a href="Design Reviews.pdf" download>Design Review Presentation</a>
+</td>
+      <td><a href="https://github.com/BraedenKuether/Capstone" target="_blank">Github</a>
+</td>
+    </tr>
+    <tr>
+      <td><a href="ResponseSummary.pdf" download>Peer Reviews</a>
+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<br>--> 
+</body>
+</html>
