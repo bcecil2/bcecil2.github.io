@@ -63,14 +63,14 @@ pre code {
     <h2 class="text-center">Portfolio Research and Management</h2>
     <div class="text-justify">
 	    The Oregon State Investment Group (OSIG) currently manages nearly $3.5 million spread across 3
-	    different portfolios. However unlike major finance firms, OSIG does not have access to 
+	    different portfolios. However, unlike major finance firms, OSIG does not have access to 
 	    the same advanced technology. Our work seeks to change that by using deep learning techniques
       to help the group analyze and manage their portfolios.
   
       <br>
       <br>
 
-      As part of the machine learning team I developed software that reccommends 
+      As part of the machine learning team I developed software that recommends 
       an optimal allocation of assets for a portfolio. This gives managers additional insight
       into their portfolio, expedites the management process, and most importantly increases 
       returns!
@@ -85,13 +85,14 @@ pre code {
     <h2 class="text-center">Results</h2>
     <div class="text-justify">
     We were able to implement a portfolio analysis model and generalized it to work
-    on a variety of assets, something which the paper our initial research was based on did not do. We have seen great results running it on OSIG'S large cap portfolio
+    on a variety of assets, something which the paper our initial research was based on did not do.
+    We have seen great results running it on OSIG'S large cap portfolio,
     which contains around 20 assets each with a market cap above $10 million. Over a five year
     period our model is able to get around 1.9 cumulative return.
     <br>
     <img src="cumulativereturns.jpg" class="smallcenter"></img>
     <br>
-    We also created a web application to be used by the groups portfolio analysts. For those interested in the details of the model read below or check
+    We also created a web application to be used by the group's portfolio analysts. For those interested in the details of the model read below or check
     out our <a target="_blank"
     href="https://github.com/BraedenKuether/Capstone/tree/altsharpe">Github Repo</a>.
 </div>
@@ -102,10 +103,10 @@ pre code {
 <div class="container">
     <h2 class="text-center">Conclusions</h2>
     <div class="text-justify">
-      The project gave very valuable applied deep learning experience. Our task was novel so it
-      gave me an opportunity to do more challenging work because we had to implement our own loss
-      function and validate that it was correct. We also had to engineer the system end to end
-      which meant working with the  less glamorous aspects of machine learning like designing and curating a data pipeline, and validating and visualizaing model results.
+      The project gave very valuable applied deep learning experience. Our task was novel, giving me
+      the opportunity to do challenging work like implementing our own loss
+      function and validating its correctness. We also had to engineer the system end to end,
+      which meant working with the  less glamorous aspects of machine learning like designing and curating a data pipeline, and validating and visualizing model results.
     </div>
 </div>
 
@@ -126,7 +127,7 @@ pre code {
         <img src=mode.gif class="bigcenter"></img>   
       <br>
       <br>
-      In our case the hidden layer is an LSTM feeding into a fully connected layer and the softmax is used
+      In our case the hidden layer is an LSTM feeding into a fully connected layer, finally a softmax is used
       to make sure the weights of our portfolio sum to one. The whole network is driven by the
       sharpe ratio as a loss function, which tells us the amount of excess return our portfolio
       achieves relative to a risk free asset. For each asset we calculate the returns over a
